@@ -1,14 +1,19 @@
+import logging
 from typing import Literal
 import discord,os
 from discord import app_commands
 from .embed_handler import mission_embed
-from .button_handler import JoinButton
-
+from .button_handler import Buttons
+from .utils import convert_to_int_list
+logger = logging.getLogger(__name__)
 
 class Commands():
     def __init__(self, tree: app_commands.CommandTree, client: discord.Client) -> None:
         self.tree = tree
         self.client = client
+        self.log_channel_id = int(os.environ.get('LOG_CHANNEL_ID'))
+        self.mission_log_channel_id= int(os.environ.get('MISSION_LOG_CHANNEL_ID'))
+        self.admin_roles = os.environ.get('ADMIN_ROLES')
 
         self.client.event(self.on_ready)
         self.tree.command()(self.reload)
@@ -16,7 +21,7 @@ class Commands():
 
     async def on_ready(self):
         await self.tree.sync()
-        print("commands synced and ready")
+        logger.warning("commands synced and ready")
 
     async def reload(self, interaction: discord.Interaction):
         await interaction.response.send_message("reloaded!")
@@ -44,6 +49,22 @@ class Commands():
         resumo: str,
         data_hora: str,
         ):
-    
-        await interaction.response.send_message(embed=mission_embed(mestre, rank, titulo_missao, resumo, data_hora), view=JoinButton())
-    
+
+        admin_roles = convert_to_int_list(self.admin_roles)
+
+        await interaction.response.send_message(
+            embed=mission_embed(mestre, rank, titulo_missao, resumo, data_hora),
+            view=Buttons(mestre=mestre,
+                         log_channel_id=self.log_channel_id,
+                         titulo_missao=titulo_missao,
+                         admin_roles=admin_roles,
+                         mission_log_channel_id=self.mission_log_channel_id
+                         )
+        )
+
+        if self.mission_log_channel_id:
+            try:
+                mission_log_channel = interaction.guild.get_channel(self.mission_log_channel_id)
+                await mission_log_channel.send(f'O mestre {mestre.mention} **ABRIU** uma nova mesa **{titulo_missao}**')
+            except:
+                logger.warning("falha ao mandar log para o canal")

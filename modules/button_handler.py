@@ -32,10 +32,10 @@ class Buttons(discord.ui.View):
         elif interaction.user.id == self.mestre.id:
             await interaction.response.send_message(f'Você não pode ser jogador na sua própria mesa **{self.titulo_missao}**!', ephemeral=True)
             return
-        
+
         self.clicked_users.add(interaction.user.id)
         self.spots_left -= 1
-        
+
         button.label = f"Vagas restantes: {self.spots_left}"
         if self.spots_left <= 0:
             button.label = "Vagas esgotadas"

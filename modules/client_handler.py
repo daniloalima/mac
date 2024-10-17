@@ -9,7 +9,7 @@ class Client():
         self.client = discord.Client(intents=self.intents)
         self.tree = app_commands.CommandTree(self.client)
         self.token = os.environ.get("TOKEN")
-    
+
     def get_client_data(self):
         return {
             'client': self.client,

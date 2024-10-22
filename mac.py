@@ -1,9 +1,11 @@
 import logging
+from dotenv import load_dotenv
 from modules.client_handler import Client
 from modules.command_handler import Commands
 
 logging.basicConfig(format='%(asctime)s %(levelname)s %(message)s', level=logging.INFO, datefmt='%m/%d/%Y %I:%M:%S')
 logger = logging.getLogger(__name__)
+load_dotenv()
 
 if __name__ == "__main__":
     client_instance = Client()

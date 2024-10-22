@@ -1,6 +1,7 @@
 import logging
-from typing import Literal
+from typing import List, Literal
 import discord,os
+from discord.ext.commands import Greedy
 from dotenv import load_dotenv
 from discord import app_commands
 from .embed_handler import Embed
@@ -16,6 +17,7 @@ class Commands():
         self.log_channel_id = int(os.environ.get('DEV_LOG_CHANNEL_ID'))
         self.mission_log_channel_id= int(os.environ.get('DEV_MISSION_LOG_CHANNEL_ID'))
         self.admin_roles = os.environ.get('DEV_ADMIN_ROLES')
+        self.guild_server_id = int(os.environ.get('DEV_GUILD_SERVER_ID'))
         self.embed = Embed()
         self.utils = Utils()
         self.admin_roles = self.utils.convert_to_int_list(self.admin_roles)
@@ -24,6 +26,9 @@ class Commands():
         self.tree.command()(self.sync_and_ping)
         self.tree.command(description="Criar uma missão no quadro")(self.mission_create)
         self.tree.command(description="Rolar dados")(self.roll_parabellum)
+        self.tree.command(description="Checar funcionalidades disponíveis")(self.feature_check)
+        self.tree.command(description="Registrar sucesso de missão")(self.mission_success)
+        self.tree.command(description="Registrar falha de missão")(self.mission_failed)
 
     async def on_ready(self):
         logger.info("bot up and running")
@@ -36,6 +41,11 @@ class Commands():
         latency = self.client.latency * 1000
         logger.info(f"reloaded {len(synced)} commands! {latency:.2f}ms")
         await interaction.response.send_message(embed=self.embed.ping_embed(latency, len(synced)))
+
+    async def feature_check(self, interaction: discord.Interaction):
+        is_admin = self.utils.check_admin(interaction.user, self.admin_roles)
+        is_guild_server = interaction.guild.id == self.guild_server_id
+        await interaction.response.send_message(embed=self.embed.feature_check_embed(is_admin, is_guild_server))
 
     @app_commands.describe(
         mestre = "Narrador da mesa",
@@ -60,7 +70,10 @@ class Commands():
         resumo: str,
         data_hora: str,
         ):
-        await self.tree.sync()
+
+        if interaction.guild.id != self.guild_server_id:
+            await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
+            return
 
         await interaction.response.send_message(
             embed=self.embed.mission_embed(mestre, rank, titulo_missao, resumo, data_hora),
@@ -96,4 +109,63 @@ class Commands():
                 rolled_dice[2],
                 rolled_dice[3]
             )
+        )
+
+    @app_commands.describe(
+        rank="Dificuldade da missão",
+    )
+    async def mission_success(
+            self,
+            interaction: discord.Interaction,
+            rank: Literal [
+                "Cobre (XP 15-20)",
+                "Bronze (XP 20-35)",
+                "Prata (XP 35-60)",
+                "Ouro (XP 60-100)",
+                "Platina (XP 100-160)",
+                "Lenda (XP 160+)"
+            ],
+            jogador_1: discord.Member,
+            jogador_2: discord.Member,
+            jogador_3: discord.Member,
+            jogador_4: discord.Member = None,
+            jogador_5: discord.Member = None,
+        ):
+        if interaction.guild.id != self.guild_server_id:
+            await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
+            return
+
+        jogadores = [jogador_1, jogador_2, jogador_3, jogador_4, jogador_5]
+
+        await interaction.response.send_message(
+            embed=self.embed.mission_success_embed(rank, jogadores)
+        )
+
+    @app_commands.describe(
+        rank="Dificuldade da missão",
+    )
+    async def mission_failed(
+            self,
+            interaction: discord.Interaction,
+            rank: Literal [
+                "Cobre (XP 15-20)",
+                "Bronze (XP 20-35)",
+                "Prata (XP 35-60)",
+                "Ouro (XP 60-100)",
+                "Platina (XP 100-160)",
+                "Lenda (XP 160+)"
+            ],
+            jogador_1: discord.Member,
+            jogador_2: discord.Member,
+            jogador_3: discord.Member,
+            jogador_4: discord.Member = None,
+            jogador_5: discord.Member = None,
+        ):
+        if interaction.guild.id != self.guild_server_id:
+            await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
+
+        jogadores = [jogador_1, jogador_2, jogador_3, jogador_4, jogador_5]
+
+        await interaction.response.send_message(
+            embed=self.embed.mission_failed_embed(rank, jogadores)
         )

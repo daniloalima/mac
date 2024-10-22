@@ -1,25 +1,13 @@
+from typing import List
 import discord
+from .utils import Utils
 
 class Embed():
     def __init__(self) -> None:
-        pass
+        self.utils = Utils()
 
     def mission_embed(self, mestre: discord.Member, rank: str, title: str, resumo: str, data_hora: str) -> discord.Embed:
-        reward = ""
-
-        if "Cobre" in rank:
-            reward = "2 XP e 100 lascas de cobre"
-        elif "Bronze" in rank:
-            reward = "3 XP e 5 lascas de prata"
-        elif "Prata" in rank:
-            reward = "4 XP e 2 moedas de ouro"
-        elif "Ouro" in rank:
-            reward = "5 XP e 10 moedas de ouro"
-        elif "Platina" in rank:
-            reward = "6 XP e 50 moedas de ouro"
-        else:
-            reward = "Você é uma lenda, já está no topo."
-
+        reward = self.utils.rank_to_reward(rank)
 
         embed = discord.Embed(title=title, description=resumo)
         embed.color = 0xff0000
@@ -52,5 +40,49 @@ class Embed():
         embed.color = 0x000000
         embed.add_field(name="**Latência**", value=f"{latency:.2f}ms", inline=False)
         embed.add_field(name="**Comandos sincronizados**", value=commands_synced, inline=False)
+
+        return embed
+
+    def feature_check_embed(self, is_admin: bool, is_guild_server: bool) -> discord.Embed:
+        embed = discord.Embed(title="Funções disponíveis")
+        embed.color = 0x008000
+
+        if is_admin:
+            embed.add_field(name="**Funções de administrador**", value="Disponíveis", inline=False)
+        else:
+            embed.add_field(name="**Funções de administrador**", value="Indisponíveis", inline=False)
+
+        if is_guild_server:
+            embed.add_field(name="**Funções do servidor de guilda**", value="Disponíveis", inline=False)
+        else:
+            embed.add_field(name="**Funções do servidor de guilda**", value="Indisponíveis", inline=False)
+
+        embed.add_field(name="**Rolagens de Parabellum**", value="Disponível", inline=False)
+
+        return embed
+
+    def mission_success_embed(self, rank: str, jogadores: List[discord.Member]) -> discord.Embed:
+        reward = self.utils.rank_to_reward(rank)
+
+        jogadores = [jogador for jogador in jogadores if jogador]
+
+        embed = discord.Embed(title="Missão concluída!")
+        embed.color = 0x008000
+        embed.add_field(name="**Dificuldade**", value=rank, inline=False)
+        embed.add_field(name="**Jogadores**", value=' '.join([jogador.mention for jogador in jogadores]), inline=False)
+        embed.add_field(name="**Recompensa**", value=reward, inline=False)
+
+        return embed
+
+    def mission_failed_embed(self, rank: str, jogadores: List[discord.Member]) -> discord.Embed:
+        reward = self.utils.rank_to_reward_half(rank)
+
+        jogadores = [jogador for jogador in jogadores if jogador]
+
+        embed = discord.Embed(title="Missão falhou!")
+        embed.color = 0xff0000
+        embed.add_field(name="**Dificuldade**", value=rank, inline=False)
+        embed.add_field(name="**Jogadores**", value=' '.join([jogador.mention for jogador in jogadores]), inline=False)
+        embed.add_field(name="**Recompensa (pela metade)**", value=reward, inline=False)
 
         return embed

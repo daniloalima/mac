@@ -59,6 +59,34 @@ class Utils():
                 break
         return admin
 
+    def rank_to_reward(self, rank: str):
+        if "Cobre" in rank:
+            return "2 XP e 100 lascas de cobre"
+        elif "Bronze" in rank:
+            return "3 XP e 5 lascas de prata"
+        elif "Prata" in rank:
+            return "4 XP e 2 moedas de ouro"
+        elif "Ouro" in rank:
+            return "5 XP e 10 moedas de ouro"
+        elif "Platina" in rank:
+            return "6 XP e 50 moedas de ouro"
+        else:
+            return "Você é uma lenda, já tem tudo que precisa."
+
+    def rank_to_reward_half(self, rank: str):
+        if "Cobre" in rank:
+            return "1 XP e 50 lascas de cobre"
+        elif "Bronze" in rank:
+            return "2 XP e 2 lascas de prata"
+        elif "Prata" in rank:
+            return "3 XP e 1 moeda de ouro"
+        elif "Ouro" in rank:
+            return "4 XP e 5 moedas de ouro"
+        elif "Platina" in rank:
+            return "5 XP e 25 moedas de ouro"
+        else:
+            return "Você é uma lenda, cumprir essa missão era sua obrigação..."
+
 if __name__ == "__main__":
     utils = Utils()
     print(utils.roll(10, 3))

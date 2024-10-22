@@ -14,10 +14,10 @@ class Commands():
         load_dotenv()
         self.tree = tree
         self.client = client
-        self.log_channel_id = int(os.environ.get('DEV_LOG_CHANNEL_ID'))
-        self.mission_log_channel_id= int(os.environ.get('DEV_MISSION_LOG_CHANNEL_ID'))
-        self.admin_roles = os.environ.get('DEV_ADMIN_ROLES')
-        self.guild_server_id = int(os.environ.get('DEV_GUILD_SERVER_ID'))
+        self.log_channel_id = int(os.environ.get('LOG_CHANNEL_ID'))
+        self.mission_log_channel_id= int(os.environ.get('MISSION_LOG_CHANNEL_ID'))
+        self.admin_roles = os.environ.get('ADMIN_ROLES')
+        self.guild_server_id = int(os.environ.get('GUILD_SERVER_ID'))
         self.embed = Embed()
         self.utils = Utils()
         self.admin_roles = self.utils.convert_to_int_list(self.admin_roles)

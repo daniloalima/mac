@@ -95,11 +95,12 @@ class Commands():
 
     @app_commands.describe(
         qtd_dados="Quantidade de dados a serem rolados",
-        dificuldade="Dificuldade do teste",
-        target="Alvo da rolagem para sucesso (padrão 8)"
+        dificuldade="Dificuldade do teste (quantos dados você vai perder)",
+        target="Alvo da rolagem para sucesso (padrão 8)",
+        explosao="Valor que será rerolado (padrão 10)"
     )
-    async def roll_parabellum(self, interaction: discord.Interaction, qtd_dados: int, dificuldade: int, target: int = None):
-        rolled_dice = self.utils.roll(qtd_dados, dificuldade, target)
+    async def roll_parabellum(self, interaction: discord.Interaction, qtd_dados: int, dificuldade: int = None, target: int = None, explosao: int = None):
+        rolled_dice = self.utils.roll(qtd_dados, dificuldade, target, explosao)
 
         await interaction.response.send_message(
             embed=self.embed.rolls_embed(

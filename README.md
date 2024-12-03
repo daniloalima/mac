@@ -14,7 +14,7 @@ Verifica a latência do bot e recarrega todos os comandos.
 ## Comandos gerais
 ### `/roll_parabellum`
 Rola dados para testes de Parabellum.
-- **Uso**: `/roll_parabellum <qtd_dados> <dificuldade> <target>`
+- **Uso**: `/roll_parabellum <qtd_dados> <dificuldade> <target> <explosao>`
 - **Parâmetros**:
   - `qtd_dados`: Quantidade de dados a serem rolados (sempre será rolado 1 dado, mesmo que o valor seja menor que 1).
   - `dificuldade` (opcional): Quantidade de dados que será reduzida do seu teste (padrão é 0).

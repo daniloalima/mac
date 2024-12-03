@@ -11,14 +11,19 @@ class Utils():
     def convert_to_int_list(self, string: str) -> list[int]:
         return [int(item) for item in string.split(',')]
 
-    def roll(self, dice_pool: int, dificulty: int, target: int = None):
+    def roll(self, dice_pool: int, dificulty: int = None, target: int = None, reroll: int = None):
         target = 8 if target is None else target
+        dice_pool = 1 if dice_pool < 1 else dice_pool
+        dificulty = 0 if dificulty is None else dificulty
+        reroll = 10 if reroll is None else reroll
+        dice_range = dice_pool - dificulty
+        dice_range = max(dice_range, 1)
         result = ''
         rolls = []
         for _ in range(dice_pool - dificulty):
             roll_result = random.randint(1, 10)
             rolls.append(roll_result)
-            if roll_result == 10:
+            if reroll is not 0 and roll_result >= reroll:
                 self.critical_count += 1
                 rolls.extend(self.roll_again())
         rolls.sort(reverse=True)

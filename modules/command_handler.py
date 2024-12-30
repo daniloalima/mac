@@ -1,3 +1,4 @@
+import json
 import logging
 from typing import List, Literal
 import discord,os
@@ -7,6 +8,7 @@ from discord import app_commands
 from .embed_handler import Embed
 from .button_handler import Buttons
 from .utils import Utils
+from .api import APIClient
 logger = logging.getLogger(__name__)
 
 class Commands():
@@ -20,6 +22,7 @@ class Commands():
         self.guild_server_id = int(os.environ.get('GUILD_SERVER_ID'))
         self.embed = Embed()
         self.utils = Utils()
+        self.api = APIClient()
         self.admin_roles = self.utils.convert_to_int_list(self.admin_roles)
         self.client.event(self.on_ready)
 
@@ -29,6 +32,7 @@ class Commands():
         self.tree.command(description="Checar funcionalidades disponíveis")(self.feature_check)
         self.tree.command(description="Registrar sucesso de missão")(self.mission_success)
         self.tree.command(description="Registrar falha de missão")(self.mission_failed)
+        self.tree.command(description="Listar mesa por ID")(self.listar_todas_mesas)
 
     async def on_ready(self):
         logger.info("bot up and running")
@@ -170,3 +174,15 @@ class Commands():
         await interaction.response.send_message(
             embed=self.embed.mission_failed_embed(rank, jogadores)
         )
+
+    async def listar_todas_mesas(self, interaction: discord.Interaction):
+        if not self.utils.check_admin(interaction.user, self.admin_roles):
+            await interaction.response.send_message("Você não tem permissão para gerenciar mesas", ephemeral=True)
+        embeds = []
+        response = self.api.get(f"mesas")
+        mesas = response['mesas']
+        for mesa in mesas:
+            embeds.append(self.embed.listar_mesa_embed(mesa))
+
+        #await interaction.response.send_message(f"Mesa encontrada: {response}")
+        await interaction.response.send_message(embeds=embeds)

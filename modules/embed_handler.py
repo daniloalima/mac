@@ -86,3 +86,15 @@ class Embed():
         embed.add_field(name="**Recompensa (pela metade)**", value=reward, inline=False)
 
         return embed
+
+    def listar_mesa_embed(self, mesa: dict) -> discord.Embed:
+        embed = discord.Embed(title=f"{mesa['name']}")
+        embed.color = 0x00ff00 if mesa['vagas'] != 0 else 0xff0000
+        embed.add_field(name="**Sistema**", value=mesa['sistema'], inline=False)
+        embed.add_field(name="**Mestre**", value=mesa['mestre'], inline=False)
+        embed.add_field(name="**Dia**", value=mesa['dia'], inline=True)
+        embed.add_field(name="**Hora**", value=mesa['horario'], inline=True)
+        if mesa['descricao'].strip() != "":
+            embed.add_field(name="**Descrição**", value=mesa['descricao'], inline=False)
+        embed.add_field(name="**Vagas**", value=mesa['vagas'], inline=True)
+        return embed

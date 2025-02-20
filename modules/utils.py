@@ -20,12 +20,12 @@ class Utils():
         dice_range = max(dice_range, 1)
         result = ''
         rolls = []
-        for _ in range(dice_pool - dificulty):
+        for _ in range(dice_range):
             roll_result = random.randint(1, 10)
             rolls.append(roll_result)
             if reroll is not 0 and roll_result >= reroll:
                 self.critical_count += 1
-                rolls.extend(self.roll_again())
+                rolls.extend(self.roll_again(reroll))
         rolls.sort(reverse=True)
         for roll in rolls:
             if roll >= target:
@@ -46,13 +46,13 @@ class Utils():
 
         return rolls, success, result, critical_count
 
-    def roll_again(self) -> list[int]:
+    def roll_again(self, reroll) -> list[int]:
         rolls = []
         while True:
             result = random.randint(1, 10)
             rolls.append(result)
             self.critical_count += 1 if result == 10 else 0
-            if result != 10:
+            if result < reroll:
                 break
         return rolls
 
@@ -94,4 +94,4 @@ class Utils():
 
 if __name__ == "__main__":
     utils = Utils()
-    print(utils.roll(10, 3))
+    print(utils.roll(10, 0, 8, 7))

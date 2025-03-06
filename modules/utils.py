@@ -51,7 +51,7 @@ class Utils():
         while True:
             result = random.randint(1, 10)
             rolls.append(result)
-            self.critical_count += 1 if result == 10 else 0
+            self.critical_count += 1 if result >= reroll else 0
             if result < reroll:
                 break
         return rolls

@@ -1,5 +1,5 @@
 [
-    {
+  {
     "id": 1,
     "nome": "Ana Paula Rosa Pereira",
     "email": "?",
@@ -33,7 +33,7 @@
     "mesas": [],
     "ultimo_mes_pago": "20/07/2025",
     "forma_pagamento": "PIX",
-    "valor": "R$ 429,80"
+    "valor": "R$ 79,80"
   },
   {
     "id": 6,
@@ -91,7 +91,7 @@
     "email": "",
     "celular": "47 98414-8321",
     "mesas": [],
-    "ultimo_mes_pago": "19/07/2025",
+    "ultimo_mes_pago": "19/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
   },
@@ -101,7 +101,7 @@
     "email": "",
     "celular": "55 11 99936-7176",
     "mesas": [],
-    "ultimo_mes_pago": "30/07/2025",
+    "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 700,00"
   },
@@ -131,7 +131,7 @@
     "email": "",
     "celular": "55 61 9633-3690",
     "mesas": [],
-    "ultimo_mes_pago": "15/08/2025",
+    "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
   },
@@ -141,7 +141,7 @@
     "email": "",
     "celular": "14 99825-7977",
     "mesas": [],
-    "ultimo_mes_pago": "10/07/2025",
+    "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
   },
@@ -197,7 +197,7 @@
   },
   {
     "id": 33,
-    "nome": "Felipe Prato",
+    "nome": "Felipe Prato(a)",
     "email": "",
     "celular": "55 13 97415-4597",
     "mesas": [],
@@ -257,12 +257,22 @@
   },
   {
     "id": 46,
-    "nome": "Macos Vinicius Troll",
+    "nome": "Marcos Vinicius Troll",
     "email": "",
     "celular": "55 66 8149-5015",
     "mesas": [],
     "ultimo_mes_pago": "10/01/2026",
     "forma_pagamento": "PIX",
     "valor": "R$ 4000,00"
+  },
+  {
+    "id": 46,
+    "nome": "Wellington",
+    "email": "",
+    "celular": "+55 91 8071-8526",
+    "mesas": [],
+    "ultimo_mes_pago": "30/08/2026",
+    "forma_pagamento": "PIX",
+    "valor": "R$ 79,80"
   }
 ]

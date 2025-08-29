@@ -22,13 +22,13 @@ class Commands():
         self.tree = tree
         self.client = client
 
-        self._load_config()
-
-
+        # Inicializar dependências primeiro
         self.embed = Embed()
         self.utils = Utils()
         self.hotmart_api = HotmartAPI()
 
+        # Depois carregar configurações
+        self._load_config()
 
         self._init_command_categories()
 
@@ -62,5 +62,5 @@ class Commands():
         self.assinante_commands.register_commands(self.tree)
         self.admin_commands.register_commands(self.tree)
 
-        async def on_ready(self):
-            logger.info("bot up and running")
+    async def on_ready(self):
+        logger.info("bot up and running")

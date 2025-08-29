@@ -178,6 +178,54 @@ class HotmartAPI:
             print(f"Erro ao consultar Hotmart: {e}")
             return None
 
+    def get_active_and_delayed_summary(self, accession_date: int = 1546308000000):
+        """Busca assinaturas ACTIVE e DELAYED da Hotmart e retorna resumo consolidado"""
+        token = self.get_access_token()
+        if not token:
+            return {"error": "Não foi possível obter o access token."}
+
+        headers = {
+            'Content-Type': 'application/json',
+            'Authorization': f'Bearer {token}'
+        }
+
+        def make_request(status):
+            params = {"status": status, "accession_date": accession_date}
+            try:
+                response = requests.get(HOTMART_URL, headers=headers, params=params, timeout=15)
+                if response.status_code == 401:
+                    # Token expirado, renovar
+                    self.access_token = None
+                    new_token = self.get_access_token()
+                    if not new_token:
+                        return None
+                    headers['Authorization'] = f'Bearer {new_token}'
+                    response = requests.get(HOTMART_URL, headers=headers, params=params, timeout=15)
+                response.raise_for_status()
+                return response.json()
+            except requests.RequestException as e:
+                print(f"Erro ao consultar Hotmart ({status}): {e}")
+                return None
+
+        # Buscar assinaturas ativas e atrasadas
+        active_data = make_request("ACTIVE")
+        delayed_data = make_request("DELAYED")
+
+        if not active_data and not delayed_data:
+            return {"error": "Erro ao consultar dados da Hotmart"}
+
+        # Processar dados
+        active_items = active_data.get("items", []) if active_data else []
+        delayed_items = delayed_data.get("items", []) if delayed_data else []
+        
+        active_total = active_data.get("page_info", {}).get("total_results", 0) if active_data else 0
+        delayed_total = delayed_data.get("page_info", {}).get("total_results", 0) if delayed_data else 0
+
+        return {
+            "active": {"items": active_items, "total": active_total},
+            "delayed": {"items": delayed_items, "total": delayed_total}
+        }
+
 if __name__ == "__main__":
     api = HotmartAPI()
     # api.get_active_subscriptions()

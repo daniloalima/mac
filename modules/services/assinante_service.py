@@ -65,7 +65,7 @@ class AssinanteService:
         
         return None
     
-    def verificar_atraso(self, ultimo_mes_pago: str) -> bool:
+    def verificar_atraso(self, ultimo_mes_pago: str, nome: str = "") -> bool:
         """Verifica se um assinante está em atraso"""
         try:
             # Parse manual da data no formato DD/MM/YYYY
@@ -82,17 +82,27 @@ class AssinanteService:
             else:
                 return False
 
-            # Calcula o próximo vencimento (mesmo dia do mês seguinte)
-            if data_pagamento.month == 12:
-                proximo_vencimento = data_pagamento.replace(year=data_pagamento.year + 1, month=1)
-            else:
+            # Determinar se é assinante semestral (tem "(s)" no nome)
+            is_semestral = "(s)" in nome.lower()
+            meses_para_adicionar = 6 if is_semestral else 1
+
+            # Calcula o próximo vencimento
+            if data_pagamento.month + meses_para_adicionar > 12:
+                # Se ultrapassar dezembro, vai para o próximo ano
+                new_year = data_pagamento.year + ((data_pagamento.month + meses_para_adicionar - 1) // 12)
+                new_month = ((data_pagamento.month + meses_para_adicionar - 1) % 12) + 1
                 try:
-                    proximo_vencimento = data_pagamento.replace(month=data_pagamento.month + 1)
+                    proximo_vencimento = data_pagamento.replace(year=new_year, month=new_month)
                 except ValueError:  # Caso do dia 31 em mês com 30 dias
-                    next_month = data_pagamento.month + 1
-                    next_year = data_pagamento.year
-                    last_day = calendar.monthrange(next_year, next_month)[1]
-                    proximo_vencimento = datetime.datetime(next_year, next_month, min(data_pagamento.day, last_day))
+                    last_day = calendar.monthrange(new_year, new_month)[1]
+                    proximo_vencimento = datetime.datetime(new_year, new_month, min(data_pagamento.day, last_day))
+            else:
+                new_month = data_pagamento.month + meses_para_adicionar
+                try:
+                    proximo_vencimento = data_pagamento.replace(month=new_month)
+                except ValueError:  # Caso do dia 31 em mês com 30 dias
+                    last_day = calendar.monthrange(data_pagamento.year, new_month)[1]
+                    proximo_vencimento = datetime.datetime(data_pagamento.year, new_month, min(data_pagamento.day, last_day))
 
             # Verifica se já passou do vencimento
             hoje = datetime.datetime.now()
@@ -107,7 +117,8 @@ class AssinanteService:
         
         for assinante in assinantes:
             ultimo_mes_pago = assinante.get("ultimo_mes_pago", "")
-            if self.verificar_atraso(ultimo_mes_pago):
+            nome = assinante.get("nome", "")
+            if self.verificar_atraso(ultimo_mes_pago, nome):
                 atrasados.append(assinante)
         
         return atrasados

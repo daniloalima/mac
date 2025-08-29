@@ -44,14 +44,14 @@ class Commands():
     def _init_command_categories(self):
         """Inicializa e registra todas as categorias de comandos"""
         self.mission_commands = MissionCommands(
-            self.utils, self.admin_roles, self.embed,
+            self.utils, self.admin_roles, self.embed, 
             self.guild_server_id, self.log_channel_id, self.mission_log_channel_id
         )
         self.dice_commands = DiceCommands(self.utils, self.admin_roles, self.embed)
         self.mesa_commands = MesaCommands(self.utils, self.admin_roles)
         self.assinante_commands = AssinanteCommands(self.utils, self.admin_roles)
         self.admin_commands = AdminCommands(
-            self.utils, self.admin_roles, self.hotmart_api,
+            self.utils, self.admin_roles, self.hotmart_api, 
             self.embed, self.guild_server_id, self.client
         )
 

@@ -1,0 +1,398 @@
+[
+  {
+    "id": 1,
+    "mestre": "dan",
+    "nome": "Solo Leveling",
+    "mestre_id": 269587629555712001,
+    "sistema": "Parabellum",
+    "dia_semana": "quarta",
+    "frequencia": "4"
+  },
+  {
+    "id": 2,
+    "mestre": "dan",
+    "nome": "Cyberpunk",
+    "mestre_id": 269587629555712001,
+    "sistema": "Cyberpunk",
+    "dia_semana": "terça",
+    "frequencia": "2"
+  },
+  {
+    "id": 3,
+    "mestre": "dan",
+    "nome": "Avatar",
+    "mestre_id": 269587629555712001,
+    "sistema": "Avatar Legends",
+    "dia_semana": "domingo",
+    "frequencia": "4"
+  },
+  {
+    "id": 4,
+    "mestre": "dan",
+    "nome": "Londres, 1882",
+    "mestre_id": 269587629555712001,
+    "sistema": "Vampiro v20",
+    "dia_semana": "segunda",
+    "frequencia": "2"
+  },
+  {
+    "id": 5,
+    "mestre": "Felipe Cangussu",
+    "nome": "Herois Marvel",
+    "mestre_id": 438173500914794497,
+    "sistema": "Gurps",
+    "dia_semana": "terça",
+    "frequencia": "2"
+  },
+  {
+    "id": 6,
+    "mestre": "Felipe Cangussu",
+    "nome": "Cyberpunk",
+    "mestre_id": 438173500914794497,
+    "sistema": "Cyberpunk RED",
+    "dia_semana": "terça",
+    "frequencia": "2"
+  },
+  {
+    "id": 7,
+    "mestre": "Felipe Cangussu",
+    "nome": "Dark Ages",
+    "mestre_id": 438173500914794497,
+    "sistema": "Vampiro a Mascara",
+    "dia_semana": "quarta",
+    "frequencia": "2"
+  },
+  {
+    "id": 8,
+    "mestre": "Felipe Cangussu",
+    "nome": "Parabellum",
+    "mestre_id": 438173500914794497,
+    "sistema": "Parabellum",
+    "dia_semana": "quarta",
+    "frequencia": "2"
+  },
+  {
+    "id": 9,
+    "mestre": "Pardal",
+    "nome": "Ravenloft (grupo fechado)",
+    "mestre_id": 230526088487501824,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "domingo",
+    "frequencia": "2"
+  },
+  {
+    "id": 10,
+    "mestre": "Gabriel Aluísio",
+    "nome": "Game of Thrones",
+    "mestre_id": 265961652116127754,
+    "sistema": "Parabellum",
+    "dia_semana": "segunda",
+    "frequencia": "4"
+  },
+  {
+    "id": 11,
+    "mestre": "Gabriel Aluísio",
+    "nome": "Ekhaya",
+    "mestre_id": 265961652116127754,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "terça",
+    "frequencia": "2"
+  },
+  {
+    "id": 12,
+    "mestre": "Gabriel Aluísio",
+    "nome": "Era Cinzenta",
+    "mestre_id": 265961652116127754,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Sábado",
+    "frequencia": "2"
+  },
+  {
+    "id": 13,
+    "mestre": "Astrid",
+    "nome": "Herdeiros do Olimpo",
+    "mestre_id": 821814177508753440,
+    "sistema": "Storyteller",
+    "dia_semana": "Terça",
+    "frequencia": "2"
+  },
+  {
+    "id": 14,
+    "mestre": "Astrid",
+    "nome": "Castlerock",
+    "mestre_id": 821814177508753440,
+    "sistema": "Storyteller",
+    "dia_semana": "Quinta",
+    "frequencia": "2"
+  },
+  {
+    "id": 15,
+    "mestre": "Astrid",
+    "nome": "Herdeiros do Olimpo",
+    "mestre_id": 821814177508753440,
+    "sistema": "Storyteller",
+    "dia_semana": "Quinta",
+    "frequencia": "2"
+  },
+  {
+    "id": 16,
+    "mestre": "Panda",
+    "nome": "Inverno de Gigantes",
+    "mestre_id": 501151569631379456,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "terça",
+    "frequencia": "2"
+  },
+  {
+    "id": 17,
+    "mestre": "Panda",
+    "nome": "A Sombra do Último Shogun (grupo fechado)",
+    "mestre_id": 501151569631379456,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Terça",
+    "frequencia": "2"
+  },
+  {
+    "id": 18,
+    "mestre": "Panda",
+    "nome": "A sombra do último Shogun",
+    "mestre_id": 501151569631379456,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Quarta",
+    "frequencia": "2"
+  },
+  {
+    "id": 19,
+    "mestre": "Panda",
+    "nome": "Herança das Sombras",
+    "mestre_id": 501151569631379456,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Sexta",
+    "frequencia": "2"
+  },
+  {
+    "id": 20,
+    "mestre": "Damacena",
+    "nome": "A Colheita da Meia-Noite",
+    "mestre_id": 493219320759975938,
+    "sistema": "Old Dragon 2",
+    "dia_semana": "sexta",
+    "frequencia": "2"
+  },
+  {
+    "id": 21,
+    "mestre": "Diego Alemão",
+    "nome": "Descida ao Avernus",
+    "mestre_id": 280487774497406978,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Terça",
+    "frequencia": "2"
+  },
+  {
+    "id": 22,
+    "mestre": "Diego Alemão",
+    "nome": "Yggdrasill",
+    "mestre_id": 280487774497406978,
+    "sistema": "Yggdrasill",
+    "dia_semana": "Quarta",
+    "frequencia": "2"
+  },
+  {
+    "id": 23,
+    "mestre": "Diego Alemão",
+    "nome": "Blades in The Dark (grupo fechado)",
+    "mestre_id": 280487774497406978,
+    "sistema": "Blades in the Dark",
+    "dia_semana": "Quinta",
+    "frequencia": "2"
+  },
+  {
+    "id": 24,
+    "mestre": "Emily",
+    "nome": "Vermelho mais Profundo",
+    "mestre_id": 700674437418188930,
+    "sistema": "Kult",
+    "dia_semana": "Quarta",
+    "frequencia": "2"
+  },
+  {
+    "id": 25,
+    "mestre": "oz",
+    "nome": "Descida ao Avernus",
+    "mestre_id": 694320686394769508,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Segunda",
+    "frequencia": "2"
+  },
+  {
+    "id": 26,
+    "mestre": "Gaga",
+    "nome": "Sombras em Baldur's Gatr",
+    "mestre_id": 201863550933794817,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Segunda",
+    "frequencia": "2"
+  },
+  {
+    "id": 27,
+    "mestre": "Jef",
+    "nome": "Geração Kanto",
+    "mestre_id": 1110249414754308126,
+    "sistema": "Pokémon 5e",
+    "dia_semana": "Quinta",
+    "frequencia": "2"
+  },
+  {
+    "id": 28,
+    "mestre": "Autor - Escobar",
+    "nome": "Hellstar",
+    "mestre_id": 715008077727793333,
+    "sistema": "Tormenta20",
+    "dia_semana": "Quarta",
+    "frequencia": "2"
+  },
+  {
+    "id": 29,
+    "mestre": "Autor - Escobar",
+    "nome": "Jogos Artonianos",
+    "mestre_id": 715008077727793333,
+    "sistema": "Tormenta20",
+    "dia_semana": "Quinta",
+    "frequencia": "2"
+  },
+  {
+    "id": 30,
+    "mestre": "Autor - Escobar",
+    "nome": "As Cinzas da Última Pintura",
+    "mestre_id": 715008077727793333,
+    "sistema": "Tormenta20",
+    "dia_semana": "Sábado",
+    "frequencia": "2"
+  },
+  {
+    "id": 31,
+    "mestre": "Brenda DM 🏳⚧",
+    "nome": "Cinzas da Barovia",
+    "mestre_id": 474999299957063680,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Segunda",
+    "frequencia": "2"
+  },
+  {
+    "id": 32,
+    "mestre": "Brenda DM 🏳⚧",
+    "nome": "Gehenna 2",
+    "mestre_id": 474999299957063680,
+    "sistema": "Vampiro V20",
+    "dia_semana": "Domingo",
+    "frequencia": "2"
+  },
+  {
+    "id": 33,
+    "mestre": "LCouzenn - Orik",
+    "nome": "Deuses que podemos tocar",
+    "mestre_id": 219920966271238144,
+    "sistema": "Dungeon and Dragons",
+    "dia_semana": "Segunda",
+    "frequencia": "2"
+  },
+  {
+    "id": 34,
+    "mestre": "LCouzenn - Orik",
+    "nome": "Tirania de Dragões",
+    "mestre_id": 219920966271238144,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Quarta",
+    "frequencia": "2"
+  },
+  {
+    "id": 35,
+    "mestre": "LCouzenn - Orik",
+    "nome": "Quando Imortais Sangram",
+    "mestre_id": 219920966271238144,
+    "sistema": "vampiro v20",
+    "dia_semana": "sexta",
+    "frequencia": "2"
+  },
+  {
+    "id": 36,
+    "mestre": "Marcio <4]",
+    "nome": "Pathfinder",
+    "mestre_id": 316072257736671233,
+    "sistema": "Pathfinder",
+    "dia_semana": "Domingo",
+    "frequencia": "2"
+  },
+  {
+    "id": 37,
+    "mestre": "Alpha Omega",
+    "nome": "Dragon Lance",
+    "mestre_id": 498301979056144395,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Sexta",
+    "frequencia": "2"
+  },
+  {
+    "id": 38,
+    "mestre": "Alpha Omega",
+    "nome": "As Lendas de Wildmound",
+    "mestre_id": 498301979056144395,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Sabado",
+    "frequencia": "2"
+  },
+  {
+    "id": 39,
+    "mestre": "Dungeon Mistress",
+    "nome": "Guerras em Neltharian",
+    "mestre_id": 295667100393930753,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Domingo",
+    "frequencia": "2"
+  },
+  {
+    "id": 40,
+    "mestre": "Oscar -",
+    "nome": "Piratas (grupo fechado)",
+    "mestre_id": 460518497995325460,
+    "sistema": "Tormenta20",
+    "dia_semana": "Segunda",
+    "frequencia": "2"
+  },
+  {
+    "id": 42,
+    "mestre": "Brenda DM 🏳⚧",
+    "nome": "O chamado do Abismo",
+    "mestre_id": 368388223606456320,
+    "sistema": "Wraith",
+    "dia_semana": "Terça",
+    "frequencia": "2"
+  },
+  {
+    "id": 43,
+    "mestre": "Pedro",
+    "nome": "Tormenta",
+    "mestre_id": 216643960330780674,
+    "sistema": "Tormenta20",
+    "dia_semana": "Quinta",
+    "frequencia": "2"
+  },
+  {
+    "id": 44,
+    "mestre": "Pedro",
+    "nome": "Anomaly 777",
+    "mestre_id": 216643960330780674,
+    "sistema": "Call of Cthulhu",
+    "dia_semana": "sexta",
+    "frequencia": "2"
+  },
+  {
+    "id": 45,
+    "mestre": "DM (Rafa)",
+    "nome": "Dungeons and Dragons",
+    "mestre_id": 243459909167874048,
+    "sistema": "Dungeons and Dragons",
+    "dia_semana": "Segunda",
+    "frequencia": "2"
+  }
+]

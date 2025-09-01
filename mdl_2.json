@@ -5,11 +5,11 @@
     "email": "?",
     "celular": "+55 21 97661-7656",
     "mesas": [
-      8,
-      35,
-      10
+      4,
+      5,
+      36
     ],
-    "ultimo_mes_pago": "31/07/2025",
+    "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 1123,60"
   },
@@ -19,7 +19,7 @@
     "email": "",
     "celular": "55 11 96195-1260",
     "mesas": [
-      30
+      38
     ],
     "ultimo_mes_pago": "20/07/2025",
     "forma_pagamento": "PIX",
@@ -31,7 +31,7 @@
     "email": "",
     "celular": "55 11 94006-0120",
     "mesas": [],
-    "ultimo_mes_pago": "20/07/2025",
+    "ultimo_mes_pago": "29/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
   },
@@ -40,8 +40,10 @@
     "nome": "Filipi Augusto Costa Fratari",
     "email": "",
     "celular": "65 9650-7775",
-    "mesas": [],
-    "ultimo_mes_pago": "07/06/2025",
+    "mesas": [
+      10
+    ],
+    "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
   },
@@ -50,7 +52,10 @@
     "nome": "Gabriel Sapucahy",
     "email": "",
     "celular": "55 11 93250-4785",
-    "mesas": [],
+    "mesas": [
+      38,
+      21
+    ],
     "ultimo_mes_pago": "02/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 509,00"
@@ -60,8 +65,10 @@
     "nome": "Gustavo Derre Leal",
     "email": "",
     "celular": "11 99478-7213",
-    "mesas": [],
-    "ultimo_mes_pago": "18/07/2025",
+    "mesas": [
+      20
+    ],
+    "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 159,60"
   },
@@ -70,7 +77,9 @@
     "nome": "Jorge Alberto Simões",
     "email": "",
     "celular": "55 92 9238-3395",
-    "mesas": [],
+    "mesas": [
+      28
+    ],
     "ultimo_mes_pago": "02/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
@@ -80,18 +89,10 @@
     "nome": "Lucas Cardoso Gomes",
     "email": "",
     "celular": "11 98671-1653",
-    "mesas": [],
-    "ultimo_mes_pago": "12/06/2025",
-    "forma_pagamento": "PIX",
-    "valor": "R$ 79,80"
-  },
-  {
-    "id": 18,
-    "nome": "Lucio Soares",
-    "email": "",
-    "celular": "47 98414-8321",
-    "mesas": [],
-    "ultimo_mes_pago": "19/08/2025",
+    "mesas": [
+      13
+    ],
+    "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
   },
@@ -100,7 +101,10 @@
     "nome": "Pedro Ivo",
     "email": "",
     "celular": "55 11 99936-7176",
-    "mesas": [],
+    "mesas": [
+      2,
+      3
+    ],
     "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 700,00"
@@ -110,7 +114,9 @@
     "nome": "Rafael Pinheiro",
     "email": "",
     "celular": "55 11 98249-5823",
-    "mesas": [],
+    "mesas": [
+      29
+    ],
     "ultimo_mes_pago": "23/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
@@ -120,7 +126,12 @@
     "nome": "Sadraque",
     "email": "",
     "celular": "55 15 98819-8716",
-    "mesas": [],
+    "mesas": [
+      1,
+      2,
+      5,
+      18
+    ],
     "ultimo_mes_pago": "10/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 989,00"
@@ -130,7 +141,9 @@
     "nome": "Thiago Valeriano",
     "email": "",
     "celular": "55 61 9633-3690",
-    "mesas": [],
+    "mesas": [
+      19
+    ],
     "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
@@ -140,7 +153,9 @@
     "nome": "Thalles Djovani Pegorari",
     "email": "",
     "celular": "14 99825-7977",
-    "mesas": [],
+    "mesas": [
+      26
+    ],
     "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
@@ -150,7 +165,9 @@
     "nome": "Thiago Coutinho",
     "email": "",
     "celular": "55 19 98113-4161",
-    "mesas": [],
+    "mesas": [
+      17
+    ],
     "ultimo_mes_pago": "10/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 50,00"
@@ -160,7 +177,9 @@
     "nome": "Yasmin",
     "email": "",
     "celular": "55 31 9781-3677",
-    "mesas": [],
+    "mesas": [
+      20
+    ],
     "ultimo_mes_pago": "25/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 159,60"
@@ -170,8 +189,11 @@
     "nome": "Vinicius Prates",
     "email": "",
     "celular": "67 8448-6484",
-    "mesas": [],
-    "ultimo_mes_pago": "30/07/2025",
+    "mesas": [
+      22,
+      30
+    ],
+    "ultimo_mes_pago": "05/09/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 159,60"
   },
@@ -180,7 +202,9 @@
     "nome": "Matheus Mesquita",
     "email": "",
     "celular": "21 98878-6551",
-    "mesas": [],
+    "mesas": [
+      6
+    ],
     "ultimo_mes_pago": "15/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
@@ -190,7 +214,13 @@
     "nome": "Carlos Camargo",
     "email": "",
     "celular": "47 9938-3712",
-    "mesas": [],
+    "mesas": [
+      34,
+      37,
+      38,
+      16,
+      35
+    ],
     "ultimo_mes_pago": "10/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 350,00"
@@ -200,7 +230,10 @@
     "nome": "Felipe Prato(a)",
     "email": "",
     "celular": "55 13 97415-4597",
-    "mesas": [],
+    "mesas": [
+      1,
+      4
+    ],
     "ultimo_mes_pago": "15/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 649,80"
@@ -210,7 +243,11 @@
     "nome": "Raphael Begosso",
     "email": "",
     "celular": "11 98214-9656",
-    "mesas": [],
+    "mesas": [
+      36,
+      20,
+      3
+    ],
     "ultimo_mes_pago": "15/08/2025",
     "forma_pagamento": "",
     "valor": "R$ 315,00"
@@ -220,7 +257,9 @@
     "nome": "Gustavo Ruvieri Amorin",
     "email": "",
     "celular": "65 981601668",
-    "mesas": [],
+    "mesas": [
+      4
+    ],
     "ultimo_mes_pago": "05/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 200,00"
@@ -230,7 +269,9 @@
     "nome": "Rodrigo Santos da Silva",
     "email": "",
     "celular": "55 27 99292-1331",
-    "mesas": [],
+    "mesas": [
+      1
+    ],
     "ultimo_mes_pago": "15/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 200,00"
@@ -240,7 +281,9 @@
     "nome": "Rubens",
     "email": "",
     "celular": "55 11 98109-7849",
-    "mesas": [],
+    "mesas": [
+      36
+    ],
     "ultimo_mes_pago": "10/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 350,00"
@@ -250,7 +293,10 @@
     "nome": "Pedro Oliveira",
     "email": "",
     "celular": "55 11 97230-2544",
-    "mesas": [],
+    "mesas": [
+      38,
+      18
+    ],
     "ultimo_mes_pago": "12/01/2026",
     "forma_pagamento": "PIX",
     "valor": "R$ 866,00"
@@ -260,7 +306,9 @@
     "nome": "Marcos Vinicius Troll",
     "email": "",
     "celular": "55 66 8149-5015",
-    "mesas": [],
+    "mesas": [
+      18
+    ],
     "ultimo_mes_pago": "10/01/2026",
     "forma_pagamento": "PIX",
     "valor": "R$ 4000,00"

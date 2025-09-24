@@ -34,6 +34,7 @@ class Commands():
         self._init_command_categories()
 
         self.client.event(self.on_ready)
+        self.hotmart_api = HotmartAPI()
 
     def _load_config(self):
         """Carrega configurações do ambiente"""

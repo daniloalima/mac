@@ -21,7 +21,7 @@
     "mesas": [
       38
     ],
-    "ultimo_mes_pago": "20/07/2025",
+    "ultimo_mes_pago": "20/10/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
   },
@@ -56,7 +56,7 @@
       38,
       21
     ],
-    "ultimo_mes_pago": "02/08/2025",
+    "ultimo_mes_pago": "20/09/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 509,00"
   },
@@ -71,18 +71,6 @@
     "ultimo_mes_pago": "30/08/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 159,60"
-  },
-  {
-    "id": 13,
-    "nome": "Jorge Alberto Simões",
-    "email": "",
-    "celular": "55 92 9238-3395",
-    "mesas": [
-      28
-    ],
-    "ultimo_mes_pago": "02/08/2025",
-    "forma_pagamento": "PIX",
-    "valor": "R$ 79,80"
   },
   {
     "id": 15,
@@ -117,7 +105,7 @@
     "mesas": [
       29
     ],
-    "ultimo_mes_pago": "23/08/2025",
+    "ultimo_mes_pago": "24/09/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
   },
@@ -132,7 +120,7 @@
       5,
       18
     ],
-    "ultimo_mes_pago": "10/08/2025",
+    "ultimo_mes_pago": "02/09/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 989,00"
   },
@@ -168,7 +156,7 @@
     "mesas": [
       17
     ],
-    "ultimo_mes_pago": "10/08/2025",
+    "ultimo_mes_pago": "25/09/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 50,00"
   },
@@ -221,7 +209,7 @@
       16,
       35
     ],
-    "ultimo_mes_pago": "10/08/2025",
+    "ultimo_mes_pago": "20/09/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 350,00"
   },
@@ -234,7 +222,7 @@
       1,
       4
     ],
-    "ultimo_mes_pago": "15/08/2025",
+    "ultimo_mes_pago": "15/09/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 649,80"
   },
@@ -248,7 +236,7 @@
       20,
       3
     ],
-    "ultimo_mes_pago": "15/08/2025",
+    "ultimo_mes_pago": "15/09/2025",
     "forma_pagamento": "",
     "valor": "R$ 315,00"
   },
@@ -260,7 +248,7 @@
     "mesas": [
       4
     ],
-    "ultimo_mes_pago": "05/08/2025",
+    "ultimo_mes_pago": "05/09/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 200,00"
   },
@@ -272,7 +260,7 @@
     "mesas": [
       1
     ],
-    "ultimo_mes_pago": "15/08/2025",
+    "ultimo_mes_pago": "20/09/2025",
     "forma_pagamento": "PIX",
     "valor": "R$ 200,00"
   },
@@ -322,5 +310,29 @@
     "ultimo_mes_pago": "30/08/2026",
     "forma_pagamento": "PIX",
     "valor": "R$ 79,80"
+  },
+  {
+    "id": 47,
+    "nome": "Pedro Silvestre",
+    "email": "?",
+    "celular": "+55 19 99743-0343",
+    "mesas": [
+      4
+    ],
+    "ultimo_mes_pago": "10/09/2025",
+    "forma_pagamento": "PIX",
+    "valor": "R$ 200"
+  },
+  {
+    "id": 48,
+    "nome": "Henrique Ribas",
+    "email": "?",
+    "celular": "?",
+    "mesas": [
+      22
+    ],
+    "ultimo_mes_pago": "05/09/2025",
+    "forma_pagamento": "PIX",
+    "valor": "R$159,90"
   }
 ]

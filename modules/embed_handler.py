@@ -6,12 +6,12 @@ class Embed():
     def __init__(self) -> None:
         self.utils = Utils()
 
-    def mission_embed(self, mestre: discord.Member, rank: str, title: str, resumo: str, data_hora: str) -> discord.Embed:
-        reward = self.utils.rank_to_reward(rank)
+    def mission_embed(self, mestre: discord.Member, level: int, title: str, resumo: str, data_hora: str) -> discord.Embed:
+        reward = self.utils.level_to_reward(level)
 
         embed = discord.Embed(title=title, description=resumo)
         embed.color = 0xff0000
-        embed.add_field(name="Dificuldade", value=rank, inline=True)
+        embed.add_field(name="Nível", value=f"Nível {level}", inline=True)
         embed.add_field(name="Mestre", value=mestre.mention, inline=True)
         embed.add_field(name="Recompensa", value=reward, inline=False)
         embed.add_field(name="**Data/Hora**", value=data_hora, inline=False)
@@ -61,28 +61,75 @@ class Embed():
 
         return embed
 
-    def mission_success_embed(self, rank: str, jogadores: List[discord.Member]) -> discord.Embed:
-        reward = self.utils.rank_to_reward(rank)
+    def mission_success_embed(self, level: int, jogadores: List[discord.Member]) -> discord.Embed:
+        reward = self.utils.level_to_reward(level)
 
         jogadores = [jogador for jogador in jogadores if jogador]
 
         embed = discord.Embed(title="Missão concluída!")
         embed.color = 0x008000
-        embed.add_field(name="**Dificuldade**", value=rank, inline=False)
+        embed.add_field(name="**Nível**", value=f"Nível {level}", inline=False)
         embed.add_field(name="**Jogadores**", value=' '.join([jogador.mention for jogador in jogadores]), inline=False)
         embed.add_field(name="**Recompensa**", value=reward, inline=False)
 
         return embed
 
-    def mission_failed_embed(self, rank: str, jogadores: List[discord.Member]) -> discord.Embed:
-        reward = self.utils.rank_to_reward_half(rank)
+    def mission_failed_embed(self, level: int, jogadores: List[discord.Member]) -> discord.Embed:
+        reward = self.utils.level_to_reward_half(level)
 
         jogadores = [jogador for jogador in jogadores if jogador]
 
         embed = discord.Embed(title="Missão falhou!")
         embed.color = 0xff0000
-        embed.add_field(name="**Dificuldade**", value=rank, inline=False)
+        embed.add_field(name="**Nível**", value=f"Nível {level}", inline=False)
         embed.add_field(name="**Jogadores**", value=' '.join([jogador.mention for jogador in jogadores]), inline=False)
         embed.add_field(name="**Recompensa (pela metade)**", value=reward, inline=False)
 
+        return embed
+
+    def char_info_embed(self, char_data: dict, member: discord.Member) -> discord.Embed:
+        """Embed com informações do personagem"""
+        embed = discord.Embed(title=f"Personagem: {char_data.get('personagem', 'Sem nome')}")
+        embed.color = 0x00ff00
+        embed.add_field(name="**Jogador**", value=member.mention, inline=True)
+        embed.add_field(name="**Nível**", value=char_data.get('lvl', 1), inline=True)
+        embed.add_field(name="**XP**", value=char_data.get('xp', 0), inline=True)
+        embed.add_field(name="**Dinheiro**", value=f"{char_data.get('dinheiro', 0)} moedas de ouro", inline=False)
+        
+        return embed
+
+    def char_created_embed(self, char_name: str, member: discord.Member) -> discord.Embed:
+        """Embed confirmando criação de personagem"""
+        embed = discord.Embed(title="Personagem criado com sucesso!")
+        embed.color = 0x00ff00
+        embed.add_field(name="**Personagem**", value=char_name, inline=True)
+        embed.add_field(name="**Jogador**", value=member.mention, inline=True)
+        embed.add_field(name="**Nível inicial**", value="1", inline=True)
+        
+        return embed
+
+    def char_error_embed(self, message: str) -> discord.Embed:
+        """Embed de erro para comandos de personagem"""
+        embed = discord.Embed(title="Erro", description=message)
+        embed.color = 0xff0000
+        
+        return embed
+
+    def char_updated_embed(self, char_data: dict, member: discord.Member, updated_fields: dict) -> discord.Embed:
+        """Embed confirmando atualização de personagem"""
+        embed = discord.Embed(title="Personagem atualizado!")
+        embed.color = 0x0080ff
+        embed.add_field(name="**Personagem**", value=char_data.get('personagem', 'Sem nome'), inline=True)
+        embed.add_field(name="**Jogador**", value=member.mention, inline=True)
+        
+        # Mostra os campos que foram atualizados
+        for field, value in updated_fields.items():
+            field_name = {
+                'personagem': 'Nome',
+                'dinheiro': 'Dinheiro',
+                'xp': 'XP',
+                'lvl': 'Nível'
+            }.get(field, field)
+            embed.add_field(name=f"**{field_name} atualizado**", value=value, inline=True)
+        
         return embed

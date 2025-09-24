@@ -15,15 +15,15 @@ class MissionCommands(BaseCommand):
         self.guild_server_id = guild_server_id
         self.log_channel_id = log_channel_id
         self.mission_log_channel_id = mission_log_channel_id
-    
+
     def register_commands(self, tree: app_commands.CommandTree):
         tree.command(description="Criar uma missão no quadro")(self.mission_create)
         tree.command(description="Registrar sucesso de missão")(self.mission_success)
         tree.command(description="Registrar falha de missão")(self.mission_failed)
-    
+
     @app_commands.describe(
         mestre="Narrador da mesa",
-        rank="Dificuldade da missão",
+        nivel="Nível da missão (1-20)",
         titulo_missao="O nome da sua aventura",
         resumo="Uma sinopse da missão",
         data_hora="Quando a aventura será narrada (ex: 24/08 17:00)",
@@ -32,14 +32,7 @@ class MissionCommands(BaseCommand):
         self,
         interaction: discord.Interaction,
         mestre: discord.Member,
-        rank: Literal[
-            "Cobre (XP 15-20)",
-            "Bronze (XP 20-35)",
-            "Prata (XP 35-60)",
-            "Ouro (XP 60-100)",
-            "Platina (XP 100-160)",
-            "Lenda (XP 160+)"
-        ],
+        nivel: int,
         titulo_missao: str,
         resumo: str,
         data_hora: str,
@@ -48,8 +41,13 @@ class MissionCommands(BaseCommand):
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
             return
 
+        # Validar se o nível está entre 1 e 20
+        if nivel < 1 or nivel > 20:
+            await interaction.response.send_message("O nível da missão deve estar entre 1 e 20", ephemeral=True)
+            return
+
         await interaction.response.send_message(
-            embed=self.embed.mission_embed(mestre, rank, titulo_missao, resumo, data_hora),
+            embed=self.embed.mission_embed(mestre, nivel, titulo_missao, resumo, data_hora),
             view=Buttons(
                 mestre=mestre,
                 log_channel_id=self.log_channel_id,
@@ -66,18 +64,11 @@ class MissionCommands(BaseCommand):
             except:
                 logger.warning("falha ao mandar log para o canal")
 
-    @app_commands.describe(rank="Dificuldade da missão")
+    @app_commands.describe(nivel="Nível da missão (1-20)")
     async def mission_success(
         self,
         interaction: discord.Interaction,
-        rank: Literal[
-            "Cobre (XP 15-20)",
-            "Bronze (XP 20-35)",
-            "Prata (XP 35-60)",
-            "Ouro (XP 60-100)",
-            "Platina (XP 100-160)",
-            "Lenda (XP 160+)"
-        ],
+        nivel: Literal[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         jogador_1: discord.Member,
         jogador_2: discord.Member,
         jogador_3: discord.Member,
@@ -90,21 +81,14 @@ class MissionCommands(BaseCommand):
 
         jogadores = [jogador_1, jogador_2, jogador_3, jogador_4, jogador_5]
         await interaction.response.send_message(
-            embed=self.embed.mission_success_embed(rank, jogadores)
+            embed=self.embed.mission_success_embed(nivel, jogadores)
         )
 
-    @app_commands.describe(rank="Dificuldade da missão")
+    @app_commands.describe(nivel="Nível da missão (1-20)")
     async def mission_failed(
         self,
         interaction: discord.Interaction,
-        rank: Literal[
-            "Cobre (XP 15-20)",
-            "Bronze (XP 20-35)",
-            "Prata (XP 35-60)",
-            "Ouro (XP 60-100)",
-            "Platina (XP 100-160)",
-            "Lenda (XP 160+)"
-        ],
+        nivel: Literal[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
         jogador_1: discord.Member,
         jogador_2: discord.Member,
         jogador_3: discord.Member,
@@ -113,8 +97,9 @@ class MissionCommands(BaseCommand):
     ):
         if interaction.guild.id != self.guild_server_id:
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
+            return
 
         jogadores = [jogador_1, jogador_2, jogador_3, jogador_4, jogador_5]
         await interaction.response.send_message(
-            embed=self.embed.mission_failed_embed(rank, jogadores)
+            embed=self.embed.mission_failed_embed(nivel, jogadores)
         )

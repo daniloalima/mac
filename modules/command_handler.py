@@ -13,6 +13,7 @@ from .commands.dice_commands import DiceCommands
 from .commands.mesa_commands import MesaCommands
 from .commands.assinante_commands import AssinanteCommands
 from .commands.admin_commands import AdminCommands
+from .commands.char_commands import CharCommands
 
 logger = logging.getLogger(__name__)
 
@@ -54,6 +55,9 @@ class Commands():
             self.utils, self.admin_roles, self.hotmart_api,
             self.embed, self.guild_server_id, self.client
         )
+        self.char_commands = CharCommands(
+            self.utils, self.admin_roles, self.embed, self.guild_server_id
+        )
 
         # Registrar comandos
         self.mission_commands.register_commands(self.tree)
@@ -61,6 +65,7 @@ class Commands():
         self.mesa_commands.register_commands(self.tree)
         self.assinante_commands.register_commands(self.tree)
         self.admin_commands.register_commands(self.tree)
+        self.char_commands.register_commands(self.tree)
 
     async def on_ready(self):
         logger.info("bot up and running")

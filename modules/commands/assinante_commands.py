@@ -37,7 +37,7 @@ class AssinanteCommands(BaseCommand):
         forma_pagamento: str,
         valor: str
     ):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para registrar assinantes", ephemeral=True)
             return
 
@@ -66,7 +66,7 @@ class AssinanteCommands(BaseCommand):
         interaction: discord.Interaction,
         assinante_id: int
     ):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para consultar assinantes", ephemeral=True)
             return
 
@@ -118,15 +118,15 @@ class AssinanteCommands(BaseCommand):
         self,
         interaction: discord.Interaction,
         assinante_id: int,
-        nome: str = None,
-        email: str = None,
-        celular: str = None,
-        mesas: str = None,
-        ultimo_mes_pago: str = None,
-        forma_pagamento: str = None,
-        valor: str = None
+        nome: str | None = None,
+        email: str | None = None,
+        celular: str | None = None,
+        mesas: str | None = None,
+        ultimo_mes_pago: str | None = None,
+        forma_pagamento: str | None = None,
+        valor: str | None = None
     ):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para editar assinantes", ephemeral=True)
             return
 
@@ -182,7 +182,7 @@ class AssinanteCommands(BaseCommand):
         self,
         interaction: discord.Interaction
     ):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para consultar assinantes", ephemeral=True)
             return
 
@@ -215,7 +215,7 @@ class AssinanteCommands(BaseCommand):
         self,
         interaction: discord.Interaction
     ):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para consultar assinantes", ephemeral=True)
             return
 

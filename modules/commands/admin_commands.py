@@ -24,25 +24,29 @@ class AdminCommands(BaseCommand):
         tree.command(description="Checar funcionalidades disponíveis")(self.feature_check)
         tree.command(description="Consultar assinaturas atrasadas no Hotmart")(self.assinaturas_atrasadas)
         tree.command(description="Resumo geral de valores - Hotmart e JSON local")(self.resumo_valores)
+        tree.command(description="Atualizar níveis de todos os personagens baseado no XP")(self.update_chars)
     
     async def sync_and_ping(self, interaction: discord.Interaction):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para recarregar os comandos", ephemeral=True)
             return
         
-        synced = await self.tree.sync()
+        if self.tree:
+            synced = await self.tree.sync()
+        else:
+            synced = []
         latency = self.client.latency * 1000
         logger.info(f"reloaded {len(synced)} commands! {latency:.2f}ms")
         await interaction.response.send_message(embed=self.embed.ping_embed(latency, len(synced)))
 
     async def feature_check(self, interaction: discord.Interaction):
-        is_admin = self.check_admin(interaction.user)
-        is_guild_server = interaction.guild.id == self.guild_server_id
+        is_admin = isinstance(interaction.user, discord.Member) and self.check_admin(interaction.user)
+        is_guild_server = interaction.guild is not None and interaction.guild.id == self.guild_server_id
         await interaction.response.send_message(embed=self.embed.feature_check_embed(is_admin, is_guild_server))
     
     @app_commands.describe()
     async def assinaturas_atrasadas(self, interaction: discord.Interaction):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para consultar assinaturas", ephemeral=True)
             return
 
@@ -67,7 +71,7 @@ class AdminCommands(BaseCommand):
     @app_commands.describe()
     async def resumo_valores(self, interaction: discord.Interaction):
         """Comando para gerar resumo de valores das assinaturas ativas e atrasadas"""
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para consultar resumos", ephemeral=True)
             return
 
@@ -226,3 +230,57 @@ class AdminCommands(BaseCommand):
         except Exception as e:
             logger.error(f"Erro ao gerar resumo de valores: {e}")
             await interaction.followup.send("Erro interno ao gerar resumo de valores.")
+
+    @app_commands.describe()
+    async def update_chars(self, interaction: discord.Interaction):
+        """Atualiza o nível de todos os personagens baseado no XP acumulado"""
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
+            await interaction.response.send_message("Você não tem permissão para atualizar personagens", ephemeral=True)
+            return
+
+        await interaction.response.defer()
+
+        try:
+            result = self.utils.update_all_chars_levels()
+            
+            total_chars = result['total_chars']
+            updated_count = result['updated_count']
+            changes = result['changes']
+            
+            if updated_count == 0:
+                await interaction.followup.send("✅ Nenhum personagem precisou de atualização de nível.")
+                return
+            
+            # Monta a mensagem com as mudanças
+            summary = f"**Atualização de Níveis Concluída**\n\n"
+            summary += f"📊 **Total de personagens:** {total_chars}\n"
+            summary += f"✨ **Personagens atualizados:** {updated_count}\n\n"
+            summary += f"**Detalhes das mudanças:**\n"
+            
+            for change in changes:
+                name = change['name']
+                old_level = change['old_level']
+                new_level = change['new_level']
+                old_xp = change['old_xp']
+                new_xp = change['new_xp']
+                level_diff = new_level - old_level
+                
+                summary += f"\n• **{name}**\n"
+                summary += f"  Nível: {old_level} → {new_level} (+{level_diff} níveis)\n"
+                summary += f"  XP: {old_xp} → {new_xp}\n"
+            
+            # Quebra em chunks se necessário
+            if len(summary) > 2000:
+                chunks = [summary[i:i+2000] for i in range(0, len(summary), 2000)]
+                await interaction.followup.send(chunks[0])
+                for chunk in chunks[1:]:
+                    await interaction.followup.send(chunk)
+            else:
+                await interaction.followup.send(summary)
+                
+            logger.info(f"Atualização de níveis executada: {updated_count} personagens atualizados")
+            
+        except Exception as e:
+            logger.error(f"Erro ao atualizar níveis dos personagens: {e}")
+            await interaction.followup.send("Erro interno ao atualizar níveis dos personagens.")
+

@@ -30,7 +30,7 @@ class MesaCommands(BaseCommand):
         dia_semana: str,
         frequencia: str
     ):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para registrar mesas", ephemeral=True)
             return
 
@@ -49,7 +49,7 @@ class MesaCommands(BaseCommand):
 
     @app_commands.describe()
     async def consultar_mesas(self, interaction: discord.Interaction):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para consultar mesas", ephemeral=True)
             return
 
@@ -88,7 +88,7 @@ class MesaCommands(BaseCommand):
 
     @app_commands.describe(mesa_id="ID da mesa para consulta")
     async def consultar_mesa_id(self, interaction: discord.Interaction, mesa_id: int):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para consultar mesas", ephemeral=True)
             return
 
@@ -123,13 +123,13 @@ class MesaCommands(BaseCommand):
         self,
         interaction: discord.Interaction,
         mesa_id: int,
-        mestre: discord.Member = None,
-        nome: str = None,
-        sistema: str = None,
-        dia_semana: str = None,
-        frequencia: str = None
+        mestre: discord.Member | None = None,
+        nome: str | None = None,
+        sistema: str | None = None,
+        dia_semana: str | None = None,
+        frequencia: str | None = None
     ):
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para editar mesas", ephemeral=True)
             return
 

@@ -13,7 +13,7 @@ class Utils():
     def convert_to_int_list(self, string: str) -> list[int]:
         return [int(item) for item in string.split(',')]
 
-    def roll(self, dice_pool: int, dificulty: int = None, target: int = None, reroll: int = None):
+    def roll(self, dice_pool: int, dificulty: int | None = None, target: int | None = None, reroll: int | None = None):
         target = 8 if target is None else target
         dice_pool = 1 if dice_pool < 1 else dice_pool
         dificulty = 0 if dificulty is None else dificulty
@@ -25,7 +25,7 @@ class Utils():
         for _ in range(dice_range):
             roll_result = random.randint(1, 10)
             rolls.append(roll_result)
-            if reroll is not 0 and roll_result >= reroll:
+            if reroll != 0 and roll_result >= reroll:
                 self.critical_count += 1
                 rolls.extend(self.roll_again(reroll))
         rolls.sort(reverse=True)
@@ -115,7 +115,7 @@ class Utils():
             print(f"Erro ao salvar chars.json: {e}")
             return False
 
-    def find_char_by_player(self, player_id: int) -> dict:
+    def find_char_by_player(self, player_id: int) -> dict | None:
         """Busca um personagem pelo ID do jogador"""
         chars = self.load_chars()
         for char in chars:
@@ -168,10 +168,67 @@ class Utils():
         new_xp = char.get('xp', 0) + xp
         new_gold = char.get('dinheiro', 0) + gold
         
-        # Calcula novo nível baseado no XP total (implementação simples)
-        new_level = min(20, max(1, (new_xp // 100) + 1))
+        # Calcula novo nível baseado no XP
+        new_level, remaining_xp = self.calculate_level_from_xp(char.get('lvl', 1), new_xp)
         
-        return self.update_char(player_id, xp=new_xp, dinheiro=new_gold, lvl=new_level)
+        return self.update_char(player_id, xp=remaining_xp, dinheiro=new_gold, lvl=new_level)
+
+    def calculate_level_from_xp(self, current_level: int, xp: int) -> tuple[int, int]:
+        """Calcula o nível e XP restante baseado no XP total.
+        Retorna (novo_nivel, xp_restante)"""
+        level = current_level
+        remaining_xp = xp
+        
+        # Upando recursivamente enquanto tiver XP suficiente e não atingir o nível máximo
+        while level < 20:
+            xp_needed = self.level_to_xp(level)
+            if remaining_xp >= xp_needed:
+                remaining_xp -= xp_needed
+                level += 1
+            else:
+                break
+        
+        return level, remaining_xp
+
+    def update_all_chars_levels(self) -> dict:
+        """Atualiza o nível de todos os personagens baseado no XP acumulado.
+        Retorna um dicionário com estatísticas da atualização."""
+        chars = self.load_chars()
+        updated_count = 0
+        changes = []
+        
+        for char in chars:
+            old_level = char.get('lvl', 1)
+            old_xp = char.get('xp', 0)
+            player_id = char.get('jogador')
+            char_name = char.get('personagem', 'Desconhecido')
+            
+            # Calcula novo nível e XP restante
+            new_level, new_xp = self.calculate_level_from_xp(old_level, old_xp)
+            
+            # Se houve mudança, atualiza
+            if new_level != old_level or new_xp != old_xp:
+                char['lvl'] = new_level
+                char['xp'] = new_xp
+                updated_count += 1
+                changes.append({
+                    'name': char_name,
+                    'player_id': player_id,
+                    'old_level': old_level,
+                    'new_level': new_level,
+                    'old_xp': old_xp,
+                    'new_xp': new_xp
+                })
+        
+        # Salva as mudanças
+        if updated_count > 0:
+            self.save_chars(chars)
+        
+        return {
+            'total_chars': len(chars),
+            'updated_count': updated_count,
+            'changes': changes
+        }
 
     def csv_para_json_mdl(self, csv_path="mdl.csv", json_path="mdl.json", id_inicial=9):
         """

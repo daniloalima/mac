@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "jogador": 438173500914794497,
+    "personagem": "Rei Ricardo Milos",
+    "dinheiro": 50,
+    "xp": 0,
+    "lvl": 2
+  },
+  {
+    "jogador": 269587629555712001,
+    "personagem": "Dorian+",
+    "dinheiro": 100,
+    "xp": 5,
+    "lvl": 2
+  }
+]

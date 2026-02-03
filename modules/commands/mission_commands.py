@@ -37,7 +37,7 @@ class MissionCommands(BaseCommand):
         resumo: str,
         data_hora: str,
     ):
-        if interaction.guild.id != self.guild_server_id:
+        if not interaction.guild or interaction.guild.id != self.guild_server_id:
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
             return
 
@@ -57,12 +57,13 @@ class MissionCommands(BaseCommand):
             )
         )
 
-        if self.mission_log_channel_id:
+        if self.mission_log_channel_id and interaction.guild:
             try:
                 mission_log_channel = interaction.guild.get_channel(self.mission_log_channel_id)
-                await mission_log_channel.send(f'O mestre {mestre.mention} **ABRIU** uma nova mesa **{titulo_missao}**')
-            except:
-                logger.warning("falha ao mandar log para o canal")
+                if mission_log_channel and isinstance(mission_log_channel, discord.TextChannel):
+                    await mission_log_channel.send(f'O mestre {mestre.mention} **ABRIU** uma nova mesa **{titulo_missao}**')
+            except Exception as e:
+                logger.warning(f"falha ao mandar log para o canal: {e}")
 
     @app_commands.describe(nivel="Nível da missão (1-20)")
     async def mission_success(
@@ -72,10 +73,10 @@ class MissionCommands(BaseCommand):
         jogador_1: discord.Member,
         jogador_2: discord.Member,
         jogador_3: discord.Member,
-        jogador_4: discord.Member = None,
-        jogador_5: discord.Member = None,
+        jogador_4: discord.Member | None = None,
+        jogador_5: discord.Member | None = None,
     ):
-        if interaction.guild.id != self.guild_server_id:
+        if not interaction.guild or interaction.guild.id != self.guild_server_id:
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
             return
 
@@ -92,10 +93,10 @@ class MissionCommands(BaseCommand):
         jogador_1: discord.Member,
         jogador_2: discord.Member,
         jogador_3: discord.Member,
-        jogador_4: discord.Member = None,
-        jogador_5: discord.Member = None,
+        jogador_4: discord.Member | None = None,
+        jogador_5: discord.Member | None = None,
     ):
-        if interaction.guild.id != self.guild_server_id:
+        if not interaction.guild or interaction.guild.id != self.guild_server_id:
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
             return
 

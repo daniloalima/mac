@@ -31,11 +31,11 @@ class CharCommands(BaseCommand):
         nome_personagem: str
     ):
         # Verifica se é admin
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para usar este comando.", ephemeral=True)
             return
 
-        if interaction.guild.id != self.guild_server_id:
+        if not interaction.guild or interaction.guild.id != self.guild_server_id:
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
             return
 
@@ -66,7 +66,7 @@ class CharCommands(BaseCommand):
         interaction: discord.Interaction,
         jogador: Optional[discord.Member] = None
     ):
-        if interaction.guild.id != self.guild_server_id:
+        if not interaction.guild or interaction.guild.id != self.guild_server_id:
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
             return
 
@@ -102,11 +102,11 @@ class CharCommands(BaseCommand):
         nivel: Optional[int] = None
     ):
         # Verifica se é admin
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para usar este comando.", ephemeral=True)
             return
 
-        if interaction.guild.id != self.guild_server_id:
+        if not interaction.guild or interaction.guild.id != self.guild_server_id:
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
             return
 
@@ -157,11 +157,11 @@ class CharCommands(BaseCommand):
         jogador: discord.Member
     ):
         # Verifica se é admin
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para usar este comando.", ephemeral=True)
             return
 
-        if interaction.guild.id != self.guild_server_id:
+        if not interaction.guild or interaction.guild.id != self.guild_server_id:
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
             return
 
@@ -192,7 +192,7 @@ class CharCommands(BaseCommand):
     @app_commands.describe(
         nivel="Nível da missão para calcular recompensas",
         jogador_1="Primeiro jogador",
-        jogador_2="Segundo jogador", 
+        jogador_2="Segundo jogador",
         jogador_3="Terceiro jogador",
         jogador_4="Quarto jogador (opcional)",
         jogador_5="Quinto jogador (opcional)",
@@ -210,11 +210,11 @@ class CharCommands(BaseCommand):
         metade: bool = False
     ):
         # Verifica se é admin
-        if not self.check_admin(interaction.user):
+        if not isinstance(interaction.user, discord.Member) or not self.check_admin(interaction.user):
             await interaction.response.send_message("Você não tem permissão para usar este comando.", ephemeral=True)
             return
 
-        if interaction.guild.id != self.guild_server_id:
+        if not interaction.guild or interaction.guild.id != self.guild_server_id:
             await interaction.response.send_message("Esse comando só pode ser utilizado no servidor de guilda", ephemeral=True)
             return
 
